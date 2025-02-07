@@ -1,3 +1,9 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .bg-index{
   background: url("/static/img/background.jpg") no-repeat fixed;
   background-size: 100% auto;
@@ -12,6 +18,7 @@
 }
 
 .ms-footer {
+  margin-top: auto;
   background-color: #202020;
 }
 
