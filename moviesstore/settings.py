@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-_kur06-$n*zu0+hw7u#)doz_3@w5k4*#zqo-aqlmb1q&0kdmkh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+FLY_APP_NAME = os.environ.get("FLY_APP_NAME")
+ALLOWED_HOSTS = [f"{FLY_APP_NAME}.fly.dev"]
+CSRF_TRUSTED_ORIGINS = [f"https://{FLY_APP_NAME}.fly.dev"]
 
 
 # Application definition
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
