@@ -37,6 +37,9 @@
             <h6 class="card-subtitle mb-2 text-muted">
               {{ review.date }}
             </h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{ review.stars }} {% if review.stars == 1 %} Star {% else %} Stars {% endif %}
+            </h6>
             <p class="card-text">{{ review.comment }}</p>
             {% if user.is_authenticated and user == review.user %}
             <a class="btn btn-primary"
@@ -64,6 +67,17 @@
                     <p>
                       <label for="comment">Comment:</label>
                       <textarea name="comment" required class="form-control" id="comment"></textarea>
+                    </p>
+
+                    <p>
+                      <label for="stars">Rating:</label>
+                      <select name="stars" required class="form-control" id="stars">
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                      </select>
                     </p>
 
                     <div class="text-center">

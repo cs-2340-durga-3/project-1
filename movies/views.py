@@ -32,6 +32,7 @@ def create_review(request, id):
         review.comment = request.POST['comment']
         review.movie = movie
         review.user = request.user
+        review.stars = request.POST['stars']
         review.save()
         return redirect('movies.show', id=id)
     else:
@@ -51,6 +52,7 @@ def edit_review(request, id, review_id):
     elif request.method == 'POST' and request.POST['comment'] != '':
         review = Review.objects.get(id=review_id)
         review.comment = request.POST['comment']
+        review.stars = request.POST['stars']
         review.save()
         return redirect('movies.show', id=id)
     else:
