@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-_kur06-$n*zu0+hw7u#)doz_3@w5k4*#zqo-aqlmb1q&0kdmkh
 DEBUG = True
 
 FLY_APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = [f"{FLY_APP_NAME}.fly.dev"]
+ALLOWED_HOSTS = [f"{FLY_APP_NAME}.fly.dev", "localhost"]
 CSRF_TRUSTED_ORIGINS = [f"https://{FLY_APP_NAME}.fly.dev"]
 
 
