@@ -4,6 +4,9 @@ from .forms import CustomUserCreationForm, CustomErrorList
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordResetForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 @login_required
 def logout(request):
@@ -23,6 +26,23 @@ def login(request):
         else:
             auth_login(request, user)
             return redirect('home.index')
+
+def reset_password(request):
+    template_data = {}
+    template_data['title'] = 'Reset Password'
+    if request.method == 'GET':
+        return render(request, 'accounts/reset_password.html', {'template_data': template_data})
+    elif request.method == 'POST':
+        username = request.POST['username']
+        new_password = request.POST['new_password']
+        try:
+            user = User.objects.get(username=username)
+            user.set_password(new_password)
+            user.save()
+            template_data['success'] = 'Password has been reset successfully.'
+        except User.DoesNotExist:
+            template_data['error'] = 'User does not exist.'
+        return render(request, 'accounts/reset_password.html', {'template_data': template_data})
 
 def signup(request):
     template_data = {}
