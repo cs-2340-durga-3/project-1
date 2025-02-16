@@ -38,7 +38,13 @@
               {{ review.date }}
             </h6>
             <h6 class="card-subtitle mb-2 text-muted">
-              {{ review.stars }} {% if review.stars == 1 %} Star {% else %} Stars {% endif %}
+              {% for star in "★★★★★" %}
+                {% if forloop.counter <= review.stars %}
+                  ★
+                {% else %}
+                  ☆
+                {% endif %}
+              {% endfor %}
             </h6>
             <p class="card-text">{{ review.comment }}</p>
             {% if user.is_authenticated and user == review.user %}
